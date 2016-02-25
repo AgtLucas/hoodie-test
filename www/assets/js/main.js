@@ -8,20 +8,20 @@ function Todos($element) {
   var $el = $element
 
   // Handle marking todo as "done"
-  $el.on('click', 'input[type=checkbox]', function() {
+  $el.on('click', 'input[type=checkbox]', function () {
     hoodie.store.remove('todo', $(this).parent().data('id'))
     return false
   })
 
   // Handle "inline editing" of a todo.
-  $el.on('click', 'label', function() {
+  $el.on('click', 'label', function () {
     $(this).parent().parent().find('.editing').removeClass('editing')
     $(this).parent().addClass('editing')
     return false
   })
 
   // Handle updating of an "inline edited" todo.
-  $el.on('keypress', 'input[type=text]', function(event) {
+  $el.on('keypress', 'input[type=text]', function (event) {
     if (event.keyCode === 13) {
       hoodie.store.update('todo', $(this).parent().data('id'), {title: event.target.value})
     }
@@ -39,7 +39,7 @@ function Todos($element) {
 
   function paint() {
     $el.html('')
-    collection.sort(function(a, b) {
+    collection.sort(function (a, b) {
       return ( a.createdAt > b.createdAt ) ? 1 : -1
     })
     for (var i = 0, len = collection.length; i<len; i++) {
@@ -52,22 +52,22 @@ function Todos($element) {
     }
   }
 
-  this.add = function(todo) {
+  this.add = function (todo) {
     collection.push(todo)
     paint()
   }
 
-  this.update = function(todo) {
+  this.update = function (todo) {
     collection[getTodoItemIndexById(todo.id)] = todo
     paint()
   }
 
-  this.remove = function(todo) {
+  this.remove = function (todo) {
     collection.splice(getTodoItemIndexById(todo.id), 1)
     paint()
   }
 
-  this.clear = function() {
+  this.clear = function () {
     collection = []
     paint()
   }
@@ -77,7 +77,7 @@ function Todos($element) {
 var todos = new Todos($('#todolist'))
 
 // initial load of all todo items from the store
-hoodie.store.findAll('todo').then(function(allTodos) {
+hoodie.store.findAll('todo').then(function (allTodos) {
   allTodos.forEach(todos.add)
 })
 
@@ -90,7 +90,7 @@ hoodie.account.on('signout', todos.clear)
 
 
 // handle creating a new task
-$('#todoinput').on('keypress', function(event) {
+$('#todoinput').on('keypress', function (event) {
   // ENTER & non-empty.
   if (event.keyCode === 13 && event.target.value.length) {
     hoodie.store.add('todo', {title: event.target.value})
