@@ -28,7 +28,7 @@ function Todos($element) {
   })
 
   // Find index/position of a todo in collection.
-  function getTodoItemIndexById(id) {
+  function getTodoItemIndexById (id) {
     for (var i = 0, len = collection.length; i < len; i++) {
       if (collection[i].id === id) {
         return i
@@ -37,10 +37,10 @@ function Todos($element) {
     return null
   }
 
-  function paint() {
+  function paint () {
     $el.html('')
     collection.sort(function (a, b) {
-      return ( a.createdAt > b.createdAt ) ? 1 : -1
+      return (a.createdAt > b.createdAt) ? 1 : -1
     })
     for (var i = 0, len = collection.length; i<len; i++) {
       $el.append(
