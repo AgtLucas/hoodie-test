@@ -42,7 +42,7 @@ function Todos($element) {
     collection.sort(function (a, b) {
       return (a.createdAt > b.createdAt) ? 1 : -1
     })
-    for (var i = 0, len = collection.length; i<len; i++) {
+    for (var i = 0, len = collection.length; i < len; i++) {
       $el.append(
         '<li data-id="' + collection[i].id + '">' +
           '<input type="checkbox"> <label>' + collection[i].title + '</label>' +
