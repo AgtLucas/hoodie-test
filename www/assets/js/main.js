@@ -1,9 +1,9 @@
-"use strict"
+'use strict'
 // initialize Hoodie
-var hoodie  = new Hoodie()
+var hoodie = new Hoodie()
 
 // Todos Collection/View
-function Todos($element) {
+function Todos ($element) {
   var collection = []
   var $el = $element
 
@@ -87,7 +87,6 @@ hoodie.store.on('todo:update', todos.update)
 hoodie.store.on('todo:remove', todos.remove)
 // clear todos when user logs out,
 hoodie.account.on('signout', todos.clear)
-
 
 // handle creating a new task
 $('#todoinput').on('keypress', function (event) {
